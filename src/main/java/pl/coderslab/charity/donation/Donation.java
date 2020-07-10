@@ -1,8 +1,6 @@
 package pl.coderslab.charity.donation;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import pl.coderslab.charity.category.Category;
 import pl.coderslab.charity.institution.Institution;
 
@@ -15,6 +13,8 @@ import java.util.Set;
 @AllArgsConstructor
 @Getter
 @Setter
+@ToString(exclude = {"categories", "institution"})
+@EqualsAndHashCode(of = "id")
 public class Donation {
 
     @Id
@@ -23,10 +23,10 @@ public class Donation {
 
     private Integer quantity;
 
-    @OneToMany
+    @ManyToMany
     private Set<Category> categories;
 
-    @OneToOne
+    @ManyToOne
     private Institution institution;
 
     private String street;
