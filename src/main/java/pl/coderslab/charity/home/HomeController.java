@@ -1,25 +1,29 @@
 package pl.coderslab.charity.home;
 
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import pl.coderslab.charity.donation.DonationService;
 import pl.coderslab.charity.institution.InstitutionService;
 
 
 @Controller
-@AllArgsConstructor
+@RequiredArgsConstructor
 @Slf4j
 public class HomeController {
 
-    private InstitutionService institutionService;
+    private final InstitutionService institutionService;
+    private final DonationService donationService;
 
     @RequestMapping("/")
     public String homeAction(Model model){
         log.debug("Hello World");
         log.info("2+2={}",4);
         model.addAttribute("listOfAllInstitutions", institutionService.findAllInstitutions());
+        model.addAttribute("numberOfAllDonatedBags",donationService.numberOfDonatedBags());
+        model.addAttribute("numberOfDonations", donationService.numberOfDonations());
         return "index";
     }
 }
