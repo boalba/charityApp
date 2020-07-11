@@ -21,7 +21,7 @@ public class HomeController {
     public String homeAction(Model model){
         log.debug("Hello World");
         log.info("2+2={}",4);
-        model.addAttribute("listOfAllInstitutions", institutionService.findAllInstitutions());
+        model.addAttribute("listOfAllInstitutions", institutionService.allInstitutions());
         model.addAttribute("numberOfAllDonatedBags",donationService.numberOfDonatedBags());
         model.addAttribute("numberOfDonations", donationService.numberOfDonations());
         return "index";

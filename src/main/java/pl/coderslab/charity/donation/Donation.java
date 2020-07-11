@@ -12,6 +12,7 @@ import java.util.Set;
 
 @Entity
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
 @ToString(exclude = {"categories", "institution"})

@@ -34,4 +34,8 @@ public class DonationService {
         }
         return sum;
     }
+
+    public void saveDonation(Donation donation){
+        donationRepository.save(donation);
+    }
 }
