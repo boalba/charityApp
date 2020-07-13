@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
 
   function findQuantityAndInstitution() {
-    var quantity = document.querySelector('input[path=quantity]');
+    var quantity = document.querySelector('input[path=quantity]').getAttribute("value");
     var categories = document.querySelector('input[path=categories]');
     var institution = document.querySelector('input[path=institution]');
     document.querySelector('icon icon-bag').nextSibling = quantity + ' worki ' + categories.name;

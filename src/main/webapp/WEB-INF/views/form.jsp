@@ -14,12 +14,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
-    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="/resources/css/style.css" />
 </head>
 <body>
     <header class="header--form-page">
 
-        <jsp:include page="../includes/header.jsp"/>
+        <jsp:include page="/WEB-INF/includes/header.jsp"/>
 
         <div class="slogan container container--90">
             <div class="slogan--item">
@@ -165,14 +165,14 @@
                             <div class="form-group form-group--inline">
                                 <label>
                                     Uwagi dla kuriera
-                                    <form:textarea path="pickUpComment" rows="5"></form:textarea>
+                                    <form:textarea path="pickUpComment" rows="5"/>
                                 </label>
                             </div>
                         </div>
                     </div>
                     <div class="form-group form-group--buttons">
                         <button type="button" class="btn prev-step">Wstecz</button>
-                        <button type="button" class="btn next-step">Dalej</button>
+                        <button type="button" class="btn next-step"80>Dalej</button>
                     </div>
                 </div>
 
@@ -231,8 +231,8 @@
         </div>
     </section>
 
-    <jsp:include page="../includes/footer.jsp"/>
+    <jsp:include page="/WEB-INF/includes/footer.jsp"/>
 
-    <script src="../js/app.js"></script>
+    <script src="/resources/js/app.js"></script>
 </body>
 </html>

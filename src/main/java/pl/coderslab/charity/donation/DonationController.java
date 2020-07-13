@@ -29,7 +29,7 @@ public class DonationController {
     }
 
     @RequestMapping(value="/form-confirmation", method = RequestMethod.POST)
-    public String processDonationAddForm(@ModelAttribute(name = "donation") Donation donation){
+    public String processDonationAddForm(Donation donation){
         donationService.saveDonation(donation);
         return "form-confirmation";
     }
