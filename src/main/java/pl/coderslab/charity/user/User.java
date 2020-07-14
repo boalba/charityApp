@@ -7,6 +7,8 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @AllArgsConstructor
@@ -28,9 +30,9 @@ public class User {
     @NotEmpty
     private String password;
 
-    private int enabled;
+    private Boolean enabled;
 
-    @ManyToOne
-    private Role role;
+    @ManyToMany
+    private Set<Role> role = new HashSet<>();
 
 }

@@ -6,6 +6,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import pl.coderslab.charity.role.Role;
 
 import javax.transaction.Transactional;
 import java.util.HashSet;
@@ -28,9 +29,11 @@ public class CharityUserDetailsService implements org.springframework.security.c
         Optional<User> user = userService.findByEmailAndEnabled(email);
         if(user.isEmpty()) {throw new UsernameNotFoundException(email); }
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
-        grantedAuthorities.add(new SimpleGrantedAuthority(user.get().getRole().getRole()));
+        for(Role role : user.get().getRole()) {
+            grantedAuthorities.add(new SimpleGrantedAuthority(role.getRole()));
+        }
         return new org.springframework.security.core.userdetails.User(
-                user.get().getEmail(), user.get().getPassword(), grantedAuthorities);
+                user.get().getEmail(), user.get().getPassword(), user.get().getEnabled(), false, false, false, grantedAuthorities);
     }
 
 }

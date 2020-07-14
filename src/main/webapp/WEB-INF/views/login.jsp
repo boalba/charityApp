@@ -13,18 +13,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="/resources/css/style.css" />
 </head>
 <body>
     <header>
 
-        <jsp:include page="../includes/header.jsp"/>
+        <jsp:include page="/WEB-INF/includes/header.jsp"/>
 
     </header>
 
     <section class="login-page">
         <h2>Zaloguj się</h2>
-        <form>
+        <form action="/login" method="post">
             <div class="form-group">
                 <input type="email" name="email" placeholder="Email" />
             </div>
@@ -40,7 +40,7 @@
         </form>
     </section>
 
-    <jsp:include page="../includes/footer.jsp"/>
+    <jsp:include page="/WEB-INF/includes/footer.jsp"/>
 
 </body>
 </html>

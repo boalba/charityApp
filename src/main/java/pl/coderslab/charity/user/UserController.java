@@ -8,6 +8,8 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.validation.Valid;
+
 @Controller
 @RequiredArgsConstructor
 public class UserController {
@@ -21,7 +23,7 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public String processUserRegisterForm(@Validated User user, BindingResult bindingResult){
+    public String processUserRegisterForm(@Valid User user, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
             return "register";
         }
