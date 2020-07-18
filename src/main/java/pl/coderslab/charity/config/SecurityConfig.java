@@ -11,6 +11,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import pl.coderslab.charity.authenticationSuccessHandler.SimpleAuthenticationSuccessHandler;
 import pl.coderslab.charity.user.CharityUserDetailsService;
 
 @Configuration
@@ -28,12 +30,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/login").permitAll()
                 .antMatchers("/register").permitAll()
                 .antMatchers("/").permitAll()
+                .antMatchers("/admin", "/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
-                .and().csrf().disable().formLogin()
+                .and().csrf().disable()
+                .formLogin()
+                .successHandler(successHandler())
                 .loginPage("/login")
-                .defaultSuccessUrl("/")
                 .usernameParameter("email")
-                .passwordParameter("password");
+                .passwordParameter("password")
+                .failureUrl("/login")
+                .and()
+                .logout()
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutSuccessUrl("/login").and().exceptionHandling()
+                .accessDeniedPage("/login");
+        ;
     }
 
     @Override
@@ -51,6 +62,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public CharityUserDetailsService customUserDetailsService() {
         return new CharityUserDetailsService();
+    }
+
+    @Bean
+    public SimpleAuthenticationSuccessHandler successHandler(){
+        return new SimpleAuthenticationSuccessHandler();
     }
 
 }

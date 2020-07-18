@@ -33,7 +33,7 @@ public class CharityUserDetailsService implements org.springframework.security.c
             grantedAuthorities.add(new SimpleGrantedAuthority(role.getRole()));
         }
         return new org.springframework.security.core.userdetails.User(
-                user.get().getEmail(), user.get().getPassword(), user.get().getEnabled(), false, false, false, grantedAuthorities);
+                user.get().getEmail(), user.get().getPassword(), user.get().getEnabled(), true, true, true, grantedAuthorities);
     }
 
 }
