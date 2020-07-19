@@ -12,6 +12,7 @@ import pl.coderslab.charity.institution.InstitutionService;
 @Controller
 @RequiredArgsConstructor
 @Slf4j
+@RequestMapping("/api")
 public class HomeController {
 
     private final InstitutionService institutionService;

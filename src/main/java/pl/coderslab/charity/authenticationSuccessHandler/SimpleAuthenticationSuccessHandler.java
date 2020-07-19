@@ -41,9 +41,9 @@ public class SimpleAuthenticationSuccessHandler implements AuthenticationSuccess
         }
 
         if (hasUserRole) {
-            redirectStrategy.sendRedirect(arg0, arg1, "/");
+            redirectStrategy.sendRedirect(arg0, arg1, "/api");
         } else if (hasAdminRole) {
-            redirectStrategy.sendRedirect(arg0, arg1, "/admin");
+            redirectStrategy.sendRedirect(arg0, arg1, "/api/admin");
         } else {
             throw new IllegalStateException();
         }

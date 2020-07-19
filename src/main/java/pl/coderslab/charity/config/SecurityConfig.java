@@ -12,8 +12,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import pl.coderslab.charity.authenticationSuccessHandler.SimpleAuthenticationSuccessHandler;
 import pl.coderslab.charity.user.CharityUserDetailsService;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -27,23 +29,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.
                 authorizeRequests()
-                .antMatchers("/login").permitAll()
-                .antMatchers("/register").permitAll()
-                .antMatchers("/").permitAll()
-                .antMatchers("/admin", "/admin/**").hasRole("ADMIN")
+                .antMatchers("/api/login").permitAll()
+                .antMatchers("/api/register").permitAll()
+                .antMatchers("/api/").permitAll()
+                .antMatchers("/api/admin", "/api/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and().csrf().disable()
                 .formLogin()
                 .successHandler(successHandler())
-                .loginPage("/login")
+                .loginPage("/api/login")
                 .usernameParameter("email")
                 .passwordParameter("password")
-                .failureUrl("/login")
+                .failureUrl("/api/login")
                 .and()
                 .logout()
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/login").and().exceptionHandling()
-                .accessDeniedPage("/login");
+                .logoutRequestMatcher(new AntPathRequestMatcher("/api/logout"))
+                .logoutSuccessUrl("/api/login").and().exceptionHandling()
+                .accessDeniedPage("/api/login");
         ;
     }
 

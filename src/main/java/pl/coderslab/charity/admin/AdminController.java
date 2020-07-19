@@ -12,26 +12,14 @@ import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/admin")
+@RequestMapping("/api")
 public class AdminController {
 
     private final InstitutionService institutionService;
 
-    @ModelAttribute(name = "allInstitutions")
-    public List<Institution> allInstitutions(){
-        return institutionService.allInstitutions();
-    }
-
-    @GetMapping("")
+    @GetMapping("/admin")
     public String admin(){
 
         return "admin";
     }
-
-    @GetMapping("/institutions")
-    public String institutions(){
-
-        return "institutions";
-    }
-
 }

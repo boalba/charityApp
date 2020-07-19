@@ -4,23 +4,21 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import pl.coderslab.charity.category.CategoryService;
 import pl.coderslab.charity.institution.InstitutionService;
 
 @Controller
 @RequiredArgsConstructor
 @Slf4j
-
+@RequestMapping("/api")
 public class DonationController {
 
     private final CategoryService categoryService;
     private final InstitutionService institutionService;
     private final DonationService donationService;
 
-    @RequestMapping(value = "/donation", method = RequestMethod.GET)
+    @GetMapping("/donation")
     public String donationAddForm(Model model){
         model.addAttribute("donation", new Donation());
         model.addAttribute("listOfAllCategories", categoryService.allCategories());
@@ -28,7 +26,7 @@ public class DonationController {
         return "form";
     }
 
-    @RequestMapping(value="/form-confirmation", method = RequestMethod.POST)
+    @PostMapping("/form-confirmation")
     public String processDonationAddForm(Donation donation){
         donationService.saveDonation(donation);
         return "form-confirmation";
